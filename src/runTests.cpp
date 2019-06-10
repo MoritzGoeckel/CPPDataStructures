@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "list/tests.hpp"
+#include "array/tests.hpp"
 
 TEST(General, Print) {
 	std::cout << "Thats a print" << std::endl;
