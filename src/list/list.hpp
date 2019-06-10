@@ -56,9 +56,9 @@ class List{
         _size++;
     }
 
-    T at(size_t index){
-       return entryAt(index)->value; 
-    }
+    T operator[](size_t index){ return at(index); }
+
+    T at(size_t index){ return entryAt(index)->value; }
 
     T front(){
         if(_size == 0)

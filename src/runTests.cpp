@@ -3,6 +3,7 @@
 #include "list/tests.hpp"
 #include "array/tests.hpp"
 #include "vector/tests.hpp"
+#include "map/tests.hpp"
 
 int main(int argc, char **argv) {
 	::testing::InitGoogleTest(&argc, argv);
