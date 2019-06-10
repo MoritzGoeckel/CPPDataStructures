@@ -1,7 +1,6 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
-#include <iostream>
 #include <stdlib.h>
 
 template<typename T>
@@ -38,6 +37,8 @@ class Array{
 
         return *this;
     }
+
+    Array<T>& operator=(Array<T>& other) = delete;
 
     ~Array(){
         delete[] _array;

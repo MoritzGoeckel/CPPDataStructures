@@ -1,8 +1,6 @@
 #ifndef list_h
 #define list_h
 
-#include <iostream>
-
 template<typename T>
 class List{
 
@@ -114,9 +112,6 @@ class List{
         Entry* before = entryAt(index-1);
         before->next = new Entry(value, before->next);
     }
-
-    // Reverse
-    // Double liked
 
     ~List(){
         if(_begin == nullptr)
