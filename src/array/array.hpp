@@ -1,7 +1,7 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
-#include <stdlib.h>
+#include "../utils.hpp"
 
 template<typename T>
 class Array{
@@ -26,14 +26,17 @@ class Array{
     }
 
     Array<T>& swap(Array<T>& other){
-        T* tmpArray = _array;
+        /* T* tmpArray = _array;
         size_t tmpSize = _size;
 
         _array = other._array;
         _size = other._size;
 
         other._array = tmpArray;
-        other._size = tmpSize;
+        other._size = tmpSize; */
+
+        utils::swap(_array, other._array);
+        utils::swap(_size, other._size);
 
         return *this;
     }

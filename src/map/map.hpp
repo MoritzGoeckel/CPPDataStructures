@@ -7,6 +7,8 @@
 #define START_SIZE 10
 #define GROWTH_RATE 1.3
 
+#include <iostream>
+
 template<typename K, typename V>
 class Map{
 
@@ -21,9 +23,8 @@ class Map{
         // Contians method in list
         _size++;
     
-        if(_size > _array.size()){
+        if(_size > _array.size())
             grow();
-        }   
     }
 
     V get(K key){
@@ -77,13 +78,13 @@ class Map{
 
     static size_t hash(K key){
         if constexpr (sizeof(K) >= sizeof(size_t))
-            return *reinterpret_cast<size_t*>(key);
+            return *reinterpret_cast<size_t*>(&key);
         if constexpr (sizeof(K) >= sizeof(long))
-            return *reinterpret_cast<long*>(key);
+            return *reinterpret_cast<long*>(&key);
         if constexpr (sizeof(K) >= sizeof(int))
-            return *reinterpret_cast<int*>(key);
+            return *reinterpret_cast<int*>(&key);
         
-        return *reinterpret_cast<char*>(key);
+        return *reinterpret_cast<char*>(&key);
     }
 
     struct Pair{
