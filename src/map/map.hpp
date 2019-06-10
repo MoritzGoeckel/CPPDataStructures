@@ -7,8 +7,6 @@
 #define START_SIZE 10
 #define GROWTH_RATE 1.3
 
-#include <iostream>
-
 template<typename K, typename V>
 class Map{
 

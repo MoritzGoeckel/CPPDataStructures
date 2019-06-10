@@ -10,6 +10,6 @@ void swap(T& left, T& right){
     right = tmp;
 }
 
-}
+} // End of namespace
 
 #endif
