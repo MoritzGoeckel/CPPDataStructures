@@ -1,6 +1,10 @@
 #ifndef list_h
 #define list_h
 
+// TODO: Need iterator
+
+namespace mtl{
+
 template<typename T>
 class List{
 
@@ -9,15 +13,15 @@ class List{
         Entry(T v, Entry* n) : value(v), next(n){ }
         T value;
         Entry* next;
-        void remove() { 
-            if(next == nullptr) 
+        void remove() {
+            if(next == nullptr)
                 return;
-            
+
             next->remove();
             delete next;
         }
     };
-    
+
     Entry* _begin;
     Entry* _end;
 
@@ -30,18 +34,18 @@ class List{
         return _size;
     }
 
-    void push_front(T value){ 
+    void push_front(T value){
         if(_size == 0){
             Entry* n = new Entry(value, nullptr);
             _begin = n;
             _end = n;
         }
         else
-            _begin = new Entry(value, _begin); 
+            _begin = new Entry(value, _begin);
 
         _size++;
     }
-    
+
     void push_back(T value){
         Entry* n = new Entry(value, nullptr);
         if(_size == 0){
@@ -49,7 +53,7 @@ class List{
             _end = n;
         }
         else{
-            _end->next = n; 
+            _end->next = n;
             _end = n;
         }
 
@@ -86,7 +90,7 @@ class List{
             return;
         }
 
-        Entry* before = entryAt(index-1); 
+        Entry* before = entryAt(index-1);
         Entry* toDelete = before->next;
 
         before->next = before->next->next;
@@ -103,7 +107,7 @@ class List{
             throw "Index out of bounds";
 
         if(index == 0){
-           return push_front(value); 
+           return push_front(value);
         }
         if(index == _size){
             return push_back(value);
@@ -116,8 +120,8 @@ class List{
     ~List(){
         if(_begin == nullptr)
            return;
-        
-        _begin->remove(); 
+
+        _begin->remove();
         delete _begin;
     }
 
@@ -132,7 +136,8 @@ class List{
         }
         return current;
     }
-
 };
+
+} // namespace
 
 #endif

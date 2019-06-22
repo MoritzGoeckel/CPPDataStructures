@@ -1,7 +1,9 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
-#include "../utils.hpp"
+#include "../utils/utils.hpp"
+
+namespace mtl{
 
 template<typename T>
 class Array{
@@ -17,7 +19,7 @@ class Array{
         if(index >= _size)
             throw "Index out of bounds";
 
-        return _array[index];     
+        return _array[index];
     }
 
     void fill(const Array<T>& other){
@@ -26,8 +28,8 @@ class Array{
     }
 
     Array<T>& swap(Array<T>& other){
-        utils::swap(_array, other._array);
-        utils::swap(_size, other._size);
+        mtl::swap(_array, other._array);
+        mtl::swap(_size, other._size);
 
         return *this;
     }
@@ -43,5 +45,7 @@ class Array{
     size_t _size;
     T* _array;
 };
+
+} // namespace
 
 #endif

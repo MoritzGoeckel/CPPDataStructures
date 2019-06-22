@@ -1,7 +1,7 @@
 #include "vector.hpp"
 
 TEST(Vector, Basic) {
-    Vector<int> v;
+    mtl::Vector<int> v;
     EXPECT_EQ(10u, v.capacity());
     EXPECT_EQ(0u, v.size());
 
@@ -12,33 +12,33 @@ TEST(Vector, Basic) {
 TEST(Vector, Grow) {
     const int nums = 100;
 
-    Vector<int> v;
+    mtl::Vector<int> v;
 
     for(int i = 0; i < nums; i++)
-        v.push_back(i); 
+        v.push_back(i);
 
     for(int i = 0; i < nums; i++)
-        EXPECT_EQ(i, v[i]); 
+        EXPECT_EQ(i, v[i]);
 }
 
 TEST(Vector, Clear) {
-    Vector<int> v;
+    mtl::Vector<int> v;
     for(int i = 0; i < 100; i++)
-       v.push_back(i); 
+       v.push_back(i);
 
     ASSERT_EQ(100u, v.size());
     ASSERT_GT(v.capacity(), v.size());
 
-    v.clear(); 
+    v.clear();
     ASSERT_EQ(0u, v.size());
     ASSERT_EQ(10u, v.capacity());
 }
 
 TEST(Vector, Insert) {
-    Vector<int> v;
+    mtl::Vector<int> v;
 
     for(int i = 0; i < 118; i++)
-       v.push_back(i); 
+       v.push_back(i);
 
     ASSERT_EQ(118u, v.size());
     ASSERT_EQ(118, v.capacity());
@@ -54,10 +54,10 @@ TEST(Vector, Insert) {
 }
 
 TEST(Vector, FrontBack) {
-    Vector<int> v;
+    mtl::Vector<int> v;
 
     for(int i = 0; i < 100; i++)
-       v.push_back(i); 
+       v.push_back(i);
 
     ASSERT_EQ(0, v.front());
     ASSERT_EQ(99, v.back());

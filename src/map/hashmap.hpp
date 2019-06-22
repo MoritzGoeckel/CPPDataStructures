@@ -1,35 +1,40 @@
-#ifndef MAP_H
-#define MAP_H
+#ifndef HASHMAP_H
+#define HASHMAP_H
 
 #include "../array/array.hpp"
 #include "../list/list.hpp"
+#include "../utils/utils.hpp"
 
 #define START_SIZE 10
 #define GROWTH_RATE 1.3
 
+// TODO: Iterator
+
+namespace mtl{
+
 template<typename K, typename V>
-class Map{
+class HashMap{
 
     public:
-    Map() : _array(START_SIZE), _size(0) { }
+    HashMap() : _array(START_SIZE), _size(0) { }
 
     void put(K key, V value){
-        size_t num = hash(key) % _array.size(); 
-        Pair pair(key, value);
+        size_t num = hash(key) % _array.size();
+        Pair<K,V> pair(key, value);
         _array[num].push_back(pair);
         // TODO: Check if list already contains 'key'
         // Contians method in list
         _size++;
-    
+
         if(_size > _array.size())
             grow();
     }
 
     V get(K key){
-        size_t num = hash(key) % _array.size(); 
-        List<Pair>& list = _array[num];
+        size_t num = hash(key) % _array.size();
+        List<Pair<K, V>>& list = _array[num];
 
-        // TODO: Need interator   
+        // TODO: Very inefficient! Need interator
         for(size_t i = 0u; i < list.size(); i++)
             if(list[i].key == key)
                 return list[i].value;
@@ -48,7 +53,7 @@ class Map{
     size_t size(){ return _size; }
     size_t capacity() { return _array.size(); }
 
-    ~Map(){ }
+    ~HashMap(){ }
 
     void reserve(size_t nSize){
         if(nSize <= _size)
@@ -75,29 +80,14 @@ class Map{
     }
 
     static size_t hash(K key){
-        if constexpr (sizeof(K) >= sizeof(size_t))
-            return *reinterpret_cast<size_t*>(&key);
-        if constexpr (sizeof(K) >= sizeof(long))
-            return *reinterpret_cast<long*>(&key);
-        if constexpr (sizeof(K) >= sizeof(int))
-            return *reinterpret_cast<int*>(&key);
-        
-        return *reinterpret_cast<char*>(&key);
+        return mtl::hash<K, size_t>(key);
     }
 
-    struct Pair{
-        Pair(K k, V v){ 
-            key = k; 
-            value = v; 
-        }
-
-        K key;
-        V value;
-    };
-
-    Array<List<Pair>> _array;
+    Array<List<Pair<K,V>>> _array;
     size_t _size;
 };
+
+} // namespace
 
 #undef START_SIZE
 #undef GROWTH_RATE

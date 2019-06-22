@@ -1,7 +1,7 @@
-#include "map.hpp"
+#include "hashmap.hpp"
 
-TEST(Map, Basic) {
-    Map<int, int> m;
+TEST(HashMap, Basic) {
+    mtl::HashMap<int, int> m;
 
     m.put(10, 14);
     m.put(11, 17);

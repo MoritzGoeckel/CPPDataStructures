@@ -6,6 +6,8 @@
 #define START_SIZE 10
 #define GROWTH_RATE 1.3
 
+namespace mtl{
+
 template<typename T>
 class Vector{
 
@@ -15,7 +17,7 @@ class Vector{
     size_t size(){
         return _size;
     }
-   
+
     size_t capacity(){
         return _array.size();
     }
@@ -60,7 +62,7 @@ class Vector{
         // Shift them all back
         for(size_t i = _size - 1; i >= index; i--)
             _array[i + 1]  = _array[i];
-        
+
         _array[index] = value;
 
         _size++;
@@ -77,7 +79,7 @@ class Vector{
         if(nSize < _size)
             throw "Cant shrink size by calling reserve";
 
-        resize(nSize);    
+        resize(nSize);
     }
 
     void print(){
@@ -92,7 +94,7 @@ class Vector{
     Array<T> _array;
     size_t _size;
 
-    void grow(){ reserve(capacity() * GROWTH_RATE); } 
+    void grow(){ reserve(capacity() * GROWTH_RATE); }
 
     void resize(size_t nSize){
         Array<T> nArray(nSize);
@@ -100,6 +102,8 @@ class Vector{
         _array.swap(nArray);
     }
 };
+
+} // namespace
 
 #undef START_SIZE
 #undef GROWTH_RATE

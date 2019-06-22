@@ -2,18 +2,18 @@
 #include "list.hpp"
 
 TEST(List, Basic) {
-	List<int> list;
-	list.push_front(10);
-	list.push_front(12);
-	list.push_front(14);
-	list.push_front(15);
+    mtl::List<int> list;
+    list.push_front(10);
+    list.push_front(12);
+    list.push_front(14);
+    list.push_front(15);
 
     ASSERT_EQ(14, list.at(1));
     ASSERT_EQ(10, list.back());
 
     ASSERT_EQ(15, list.at(0));
     ASSERT_EQ(15, list.front());
-    
+
     list.remove(0);
     ASSERT_EQ(14, list.front());
 
