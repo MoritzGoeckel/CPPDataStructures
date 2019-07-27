@@ -9,7 +9,7 @@ class FixedStack{
     public:
     FixedStack(size_t capacity) : _size(0), _capacity(capacity) {
         _array = new T[_capacity];
-    } 
+    }
 
     ~FixedStack(){
         delete[] _array;
@@ -25,14 +25,14 @@ class FixedStack{
     T pop(){
         if(isEmpty())
             throw "Stack empty";
-        
+
         return _array[--_size];
     }
 
     T peek(){
         if(isEmpty())
             throw "Stack empty";
-        
+
         return _array[_size - 1u];
     }
 
@@ -47,7 +47,7 @@ class FixedStack{
     size_t capacity() const noexcept {
         return _capacity;
     }
-  
+
     private:
     T* _array;
     size_t _size;
