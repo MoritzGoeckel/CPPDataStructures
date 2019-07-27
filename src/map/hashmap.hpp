@@ -30,7 +30,7 @@ class HashMap{
             grow();
     }
 
-    V get(K key){
+    V get(K key) const {
         size_t num = hash(key) % _array.size();
         List<Pair<K, V>>& list = _array[num];
 
@@ -50,8 +50,8 @@ class HashMap{
         // TODO: Clear array
     }
 
-    size_t size(){ return _size; }
-    size_t capacity() { return _array.size(); }
+    size_t size() const noexcept { return _size; }
+    size_t capacity() const noexcept { return _array.size(); }
 
     ~HashMap(){ }
 

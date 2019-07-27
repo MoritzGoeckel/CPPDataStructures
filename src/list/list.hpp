@@ -1,5 +1,5 @@
-#ifndef list_h
-#define list_h
+#ifndef LIST_H
+#define LIST_H
 
 // TODO: Need iterator
 
@@ -9,10 +9,12 @@ template<typename T>
 class List{
 
     private:
+
     struct Entry{
-        Entry(T v, Entry* n) : value(v), next(n){ }
         T value;
         Entry* next;
+
+        Entry(T v, Entry* n) : value(v), next(n){ }
         void remove() {
             if(next == nullptr)
                 return;
@@ -24,13 +26,12 @@ class List{
 
     Entry* _begin;
     Entry* _end;
-
     size_t _size;
 
     public:
     List() : _begin(nullptr), _end(nullptr), _size(0) { }
 
-    size_t size(){
+    size_t size() const noexcept {
         return _size;
     }
 
@@ -60,18 +61,18 @@ class List{
         _size++;
     }
 
-    T operator[](size_t index){ return at(index); }
+    T operator[](size_t index) const { return at(index); }
 
-    T at(size_t index){ return entryAt(index)->value; }
+    T at(size_t index) const { return entryAt(index)->value; }
 
-    T front(){
+    T front() const {
         if(_size == 0)
             throw "List empty";
 
         return _begin->value;
     }
 
-    T back(){
+    T back() const {
         if(_size == 0)
             throw "List empty";
 
@@ -126,7 +127,7 @@ class List{
     }
 
     private:
-    Entry* entryAt(size_t index){
+    Entry* entryAt(size_t index) const {
         if(index >= size())
             throw "index out of bounds";
 
