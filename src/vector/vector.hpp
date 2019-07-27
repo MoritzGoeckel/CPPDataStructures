@@ -3,8 +3,9 @@
 
 #include "../array/array.hpp"
 
-#define START_SIZE 10
+#define MINIMUM_SIZE 10
 #define GROWTH_RATE 1.3
+#define SHRINK_THRESHOLD 0.7
 
 namespace mtl{
 
@@ -12,13 +13,19 @@ template<typename T>
 class Vector{
 
     public:
-    Vector() : _array(START_SIZE), _size(0) {}
+    Vector() : _array(MINIMUM_SIZE), _size(0) {}
 
-    size_t size(){
+    // TODO: Iterator
+
+    size_t size() const noexcept {
         return _size;
     }
 
-    size_t capacity(){
+    bool isEmpty() const noexcept {
+        return _size == 0u;
+    }
+
+    size_t capacity() const noexcept{
         return _array.size();
     }
 
@@ -26,28 +33,35 @@ class Vector{
         if(_size >= capacity())
             grow();
 
-        _array[_size] = value;
-        _size++;
+        _array[_size++] = value;
+    }
+
+    T pop_back(){
+        T result = _array[--_size];
+        if(_size <= capacity() * SHRINK_THRESHOLD && _size >= MINIMUM_SIZE)
+            shrink(_size);
+
+        return result;
     }
 
     void push_front(T value){
         insert(value, 0u);
     }
 
-    T& operator[](size_t index){
+    T& operator[](size_t index) const {
         if(index >= _size)
             throw "Index out of bounds";
 
         return _array[index];
     }
 
-    T& front(){ return operator[](0u); }
+    T& front() const { return operator[](0u); }
 
-    T& back(){ return operator[](_size - 1); }
+    T& back() const { return operator[](_size - 1); }
 
     void clear(){
-        if(capacity() > START_SIZE)
-            shrink(START_SIZE);
+        if(capacity() > MINIMUM_SIZE)
+            shrink(MINIMUM_SIZE);
 
         _size = 0u;
     }
@@ -68,6 +82,9 @@ class Vector{
         _size++;
     }
 
+    // TODO:
+    //void erase(size_t index){ }
+
     void shrink(size_t nSize){
         if(nSize > _size)
             throw "Cant expand size by calling shrink";
@@ -82,7 +99,7 @@ class Vector{
         resize(nSize);
     }
 
-    void print(){
+    void print() const {
         std::cout << "Size: " << _size << std::endl;
         for(size_t i = 0u; i < _size; i++)
             std::cout << _array[i] << std::endl;
@@ -105,7 +122,8 @@ class Vector{
 
 } // namespace
 
-#undef START_SIZE
+#undef MINIMUM_SIZE
 #undef GROWTH_RATE
+#undef SHRINK_THRESHOLD
 
 #endif

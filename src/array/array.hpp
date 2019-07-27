@@ -11,11 +11,11 @@ class Array{
 
     Array(size_t size) : _size(size), _array(new T[size]) {}
 
-    size_t size(){
+    size_t size() const noexcept {
         return _size;
     }
 
-    T& operator[](size_t index) {
+    T& operator[](size_t index) const {
         if(index >= _size)
             throw "Index out of bounds";
 

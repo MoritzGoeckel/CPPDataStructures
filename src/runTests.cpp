@@ -5,6 +5,7 @@
 #include "vector/tests.hpp"
 #include "map/tests.hpp"
 #include "utils/tests.hpp"
+#include "stack/tests.hpp"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
