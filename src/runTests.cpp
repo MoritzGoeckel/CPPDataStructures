@@ -6,6 +6,7 @@
 #include "map/tests.hpp"
 #include "utils/tests.hpp"
 #include "stack/tests.hpp"
+#include "queue/tests.cpp"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
