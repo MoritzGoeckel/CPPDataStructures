@@ -8,6 +8,7 @@
 #include "stack/tests.hpp"
 #include "queue/tests.cpp"
 #include "bitset/tests.hpp"
+#include "trees/tests.cpp"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

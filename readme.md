@@ -4,14 +4,22 @@ Reimplementing the standard library for fun and education:
 
 - [x] Array
 - [x] Vector
-- [x] Linked List
+- [x] List
 - [x] Stack
 - [x] Queue
 - [x] HashMap
 - [ ] TreeMap
 - [x] Bitset
-- [ ] Skip List
 - [ ] String
+- [ ] Skip List
+- [ ] Heap
+- [ ] R/B-Tree
+- [ ] AVL-Tree
+- [ ] B-Tree
 - [ ] Deque
+
+- [ ] Map
+- [ ] Set
+- [ ] Priority Queue
 
 The project is tested using the google test framework
