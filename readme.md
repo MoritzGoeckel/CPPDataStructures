@@ -7,7 +7,7 @@ Reimplementing the standard library for fun and education:
 * Linked List [x]
 * Stack       [x]
 * Queue       [x]
-* HashMap     [ ]
+* HashMap     [x]
 * TreeMap     [ ]
 * Bitset      [x]
 * Skip List   [ ]

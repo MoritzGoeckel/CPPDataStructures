@@ -20,10 +20,16 @@ class HashMap{
 
     void put(K key, V value){
         size_t num = hash(key) % _array.size();
+        List<Pair<K, V>>& list = _array[num];
+
+        for(auto it = list.begin(); it != list.end(); ++it){
+            if(it->key == key){
+                throw "Key already in map";
+            }
+        }
+
         Pair<K,V> pair(key, value);
-        _array[num].push_back(pair);
-        // TODO: Check if list already contains 'key'
-        // Contians method in list
+        list.push_back(pair);
         _size++;
 
         if(_size > _array.size())
@@ -34,10 +40,10 @@ class HashMap{
         size_t num = hash(key) % _array.size();
         List<Pair<K, V>>& list = _array[num];
 
-        // TODO: Very inefficient! Need interator
-        for(size_t i = 0u; i < list.size(); i++)
-            if(list[i].key == key)
-                return list[i].value;
+        for(auto it = list.begin(); it != list.end(); ++it){
+            if(it->key == key)
+                return it->value;
+        }
 
         throw "Key not found";
     }
@@ -47,7 +53,9 @@ class HashMap{
             shrink(START_SIZE);
 
         _size = 0;
-        // TODO: Clear array
+        for(size_t i = 0u; i < _array.size(); i++){
+            _array[i].clear();
+        }
     }
 
     size_t size() const noexcept { return _size; }
