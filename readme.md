@@ -5,14 +5,13 @@ Reimplementing the standard library for fun and education:
 * Array       [x]
 * Vector      [x]
 * Linked List [x]
-* Deque       [ ]
-* Stack       [ ]
-* Queue       [ ]
+* Stack       [x]
+* Queue       [x]
 * HashMap     [ ]
 * TreeMap     [ ]
-* Map         [ ]
-* Bit Vector  [ ]
+* Bitset      [x]
 * Skip List   [ ]
 * String      [ ]
+* Deque       [ ]
 
-The project is tested with using google test
+The project is tested using the google test framework

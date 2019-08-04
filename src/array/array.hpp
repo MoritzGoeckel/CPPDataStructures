@@ -11,6 +11,12 @@ class Array{
 
     Array(size_t size) : _size(size), _array(new T[size]) {}
 
+    Array(size_t size, T value) : _size(size), _array(new T[size]) {
+        for(size_t i = 0u; i < size; ++i){
+            _array[i] = value;
+        }
+    }
+
     size_t size() const noexcept {
         return _size;
     }
@@ -23,7 +29,7 @@ class Array{
     }
 
     void fill(const Array<T>& other){
-        for(size_t i = 0u; i < _size && i < other._size; i++)
+        for(size_t i = 0u; i < _size && i < other._size; ++i)
             _array[i] = other._array[i];
     }
 
@@ -39,6 +45,14 @@ class Array{
     ~Array(){
         delete[] _array;
         _array = nullptr;
+    }
+
+    void print() const {
+        std::cout << "Array(len=" << _size << ", val=";
+        for(size_t i = 0u; i < _size; ++i){
+            std::cout << _array[i] << ", ";
+        }
+        std::cout << ")" << std::endl;
     }
 
     private:
