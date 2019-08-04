@@ -12,7 +12,6 @@ class Queue{
     private:
     T* _array;
     size_t _front;
-    size_t _back;
     size_t _capacity;
     size_t _size;
 
@@ -30,7 +29,6 @@ class Queue{
         }
 
         _front = 0u;
-        _back = _size;
         _capacity = capacity;
 
         delete[] _array;
@@ -38,7 +36,7 @@ class Queue{
     }
 
     public:
-    Queue() : _front(0), _back(0), _capacity(MIN_CAPACITY), _size(0){
+    Queue() : _front(0), _capacity(MIN_CAPACITY), _size(0){
         _array = new T[_capacity];
     }
 
@@ -62,8 +60,7 @@ class Queue{
         if(isFull())
             resize(_capacity * GROWTH_RATE);
 
-        _array[_back] = value; // TODO: Check with valgrind. There seems to be a invalid write here. After dequeue
-        _back = (_back + 1) % _capacity;
+        _array[(_front + _size) % _capacity] = value; // TODO: Check with valgrind. There seems to be a invalid write here. After dequeue
         _size++;
     }
 
@@ -94,10 +91,11 @@ class Queue{
         if(isEmpty())
             throw "Queue is empty";
 
-        return _array[_back - 1];
+        return _array[((_front + _size) % _capacity) - 1];
     }
 
     // T operator[](size_t index) { } // TODO
+    // Queue& operator=(const Queue& rhs) {} // TODO
 };
 
 #undef GROWTH_RATE
